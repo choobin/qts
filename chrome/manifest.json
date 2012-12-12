@@ -1,0 +1,21 @@
+{
+    "name": "Quick Torrent Search",
+
+    "version": "2012.11",
+
+    "manifest_version": 2,
+
+    "description": "Search for torrents directly from the context menu.",
+
+    "icons": { "16": "icon16.png",
+               "48": "icon48.png",
+              "128": "icon128.png" },
+
+    "background": {
+        "page": "background.html"
+    },
+
+    "options_page": "options.html",
+
+    "permissions": ["contextMenus", "tabs"]
+}

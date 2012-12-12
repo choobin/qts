@@ -1,0 +1,23 @@
+2012-11-26  Christopher Hoobin  <hsirhc@gmail.com>
+
+	* bootstrap.js Updated KaT search string.
+
+2012-08-01  Christopher Hoobin  <hsirhc@gmail.com>
+
+	* Qts Project is now a bootstrapped (no restart) add-on.
+
+	* options.xul Preference dialog moved to the add-on manager screen.
+
+	* options.xul New preference added, "Open next to current tab".
+
+	* bootstrap.js s/piratebay.org/piratebay.se/g
+
+	* bootstrap.js RIP btjunkie.org.
+
+	* bootstrap.js RIP demonoid.me.
+
+	* bootstrap.js Torrent Reactor URI search fix.
+
+	* Update Minimum version requirement changed to 7.0.
+
+	* Update Version string changed to a more appropriate format.

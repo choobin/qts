@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <setting 
+      pref="extensions.qts@moongiraffe.net.index" 
+      type="menulist" 
+      title="Torrent Site">
+
+    <menulist sizetopopup="always">
+      <menupopup>
+        <menuitem value="0"  label="The Pirate Bay" />
+        <menuitem value="3"  label="Torrentz" />
+        <menuitem value="4"  label="Kickass Torrents" />
+        <menuitem value="5"  label="ISO Hunt" />
+        <menuitem value="6"  label="Bitsnoop" />
+        <menuitem value="7"  label="Extra Torrent" />
+        <menuitem value="8"  label="Torrent Downloads" />
+        <menuitem value="9"  label="Torrent Reactor" />
+        <menuitem value="10" label="Lime Torrents" />
+      </menupopup>
+    </menulist>
+  </setting>
+
+  <setting 
+      pref="extensions.qts@moongiraffe.net.switch" 
+      type="bool" 
+      title="Switch to new tab on search" />
+
+  <setting 
+      pref="extensions.qts@moongiraffe.net.next" 
+      type="bool" 
+      title="Open next to current tab" />
+
+</vbox>
+
+
