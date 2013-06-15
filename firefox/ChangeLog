@@ -1,8 +1,12 @@
-2012-11-26  Christopher Hoobin  <hsirhc@gmail.com>
+2012-11-26  Christopher Hoobin  <christopher@hoob.in>
+
+	* bootstrap.js Updated KaT search string and TPB search string.
+
+2012-11-26  Christopher Hoobin  <christopher@hoob.in>
 
 	* bootstrap.js Updated KaT search string.
 
-2012-08-01  Christopher Hoobin  <hsirhc@gmail.com>
+2012-08-01  Christopher Hoobin  <christopher@hoob.in>
 
 	* Qts Project is now a bootstrapped (no restart) add-on.
 

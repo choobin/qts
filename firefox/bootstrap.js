@@ -36,11 +36,11 @@ let moongiraffe = {};
 
 moongiraffe.Qts  = {
     sites: [
-        { name: "The Pirate Bay",    uri: "http://thepiratebay.se/search/%s/0/99/0" },
+        { name: "The Pirate Bay",    uri: "http://thepiratebay.sx/search/%s/0/99/0" },
         { name: "Demonoid",          uri: "http://www.demonoid.me/files/?query=%s" }, // Keep this.
         { name: "BT Junkie",         uri: "http://btjunkie.org/search?q=%s" }, // Keep this. Do not fuck with older qts.index preference values.
         { name: "Torrentz",          uri: "http://torrentz.eu/any?q=%s" },
-        { name: "Kickass Torrents",  uri: "http://www.kat.ph/search/%s/" },
+        { name: "Kickass Torrents",  uri: "http://kickass.to/search/%s/" },
         { name: "ISO Hunt",          uri: "http://isohunt.com/torrents/?ihq=%s" },
         { name: "Bitsnoop",          uri: "http://bitsnoop.com/search/all/%s/c/d/1" },
         { name: "Extra Torrent",     uri: "http://extratorrent.com/search/?search=%s" },
