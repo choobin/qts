@@ -1,3 +1,9 @@
+2013-09-27  Christopher Hoobin  <christopher@hoob.in>
+
+	* Included new option to display all torrent sites in a popup menu.
+
+	* RIP torrentdownloads.net.
+
 2012-11-26  Christopher Hoobin  <christopher@hoob.in>
 
 	* bootstrap.js Updated KaT search string and TPB search string.
