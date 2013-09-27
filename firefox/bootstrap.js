@@ -128,7 +128,8 @@ let Qts = {
         menu.appendChild(popup);
 
         for (let i = 0; i < Qts.sites.length; i++) {
-            if (i == 1 || i == 2) continue; // Skip Demonoid and BT Junkie
+            // Skip Demonoid, BT Junkie and Torrent downloads.
+            if (i == 1 || i == 2 || i == 8) continue;
 
             item = document.createElement("menuitem");
 
