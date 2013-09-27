@@ -35,10 +35,11 @@ Components.utils.import("resource://gre/modules/Services.jsm");
 let moongiraffe = {};
 
 moongiraffe.Qts  = {
+    // Keep dead sites to maintain correct mapping from existing user preference to sites array index.
     sites: [
         { name: "The Pirate Bay",    uri: "http://thepiratebay.sx/search/%s/0/99/0" },
-        { name: "Demonoid",          uri: "http://www.demonoid.me/files/?query=%s" }, // Keep this.
-        { name: "BT Junkie",         uri: "http://btjunkie.org/search?q=%s" }, // Keep this. Do not fuck with older qts.index preference values.
+        { name: "Demonoid",          uri: "http://www.demonoid.me/files/?query=%s" }, // Dead.
+        { name: "BT Junkie",         uri: "http://btjunkie.org/search?q=%s" }, // Dead.
         { name: "Torrentz",          uri: "http://torrentz.eu/any?q=%s" },
         { name: "Kickass Torrents",  uri: "http://kickass.to/search/%s/" },
         { name: "ISO Hunt",          uri: "http://isohunt.com/torrents/?ihq=%s" },
@@ -100,49 +101,80 @@ moongiraffe.Qts  = {
     },
 
     add: function(window) {
-        let context = window.document.getElementById("contentAreaContextMenu");
+        let document = window.document;
 
-        if (!context) {
-            return;
-        }
+        let context = document.getElementById("contentAreaContextMenu");
 
-        context.addEventListener("popupshowing", moongiraffe.Qts.update, false);
+        if (!context) return;
 
-        let item = window.document.createElement("menuitem");
+        context.addEventListener("popupshowing", moongiraffe.Qts.toggle, false);
 
-        item.setAttribute("id", "context-qts");
+        let reference = document.getElementById("context-searchselect");
 
-        item.addEventListener("click", moongiraffe.Qts.search, false);
+        let item = document.createElement("menuitem");
 
-        let reference = window.document.getElementById("context-searchselect");
+        item.setAttribute("id", "context-qts-item");
+
+        item.addEventListener("command", moongiraffe.Qts.search, false);
 
         reference.parentNode.insertBefore(item, reference.nextSibling);
+
+        let menu = document.createElement("menu");
+
+        menu.setAttribute("id", "context-qts-menu");
+
+        let popup = document.createElement("menupopup");
+
+        popup.setAttribute("id", "context-qts-popup");
+
+        menu.appendChild(popup);
+
+        for (let i = 0; i < moongiraffe.Qts.sites.length; i++) {
+            if (i == 1 || i == 2) continue; // Skip Demonoid and BT Junkie
+
+            item = document.createElement("menuitem");
+
+            item.setAttribute("id", "context-qts-" + i);
+
+            item.setAttribute("label", moongiraffe.Qts.sites[i].name);
+
+            item.addEventListener("command", moongiraffe.Qts.search, false);
+
+            popup.appendChild(item);
+        }
+
+        reference.parentNode.insertBefore(menu, reference.nextSibling);
     },
 
     remove: function(window) {
         let context = window.document.getElementById("contentAreaContextMenu");
 
-        context.removeEventListener("popupshowing", moongiraffe.Qts.update, false);
+        context.removeEventListener("popupshowing", moongiraffe.Qts.toggle, false);
 
-        let item = window.document.getElementById("context-qts");
+        let children = context.childNodes;
 
-        item.parentNode.removeChild(item);
+        for (let i = children.length - 1; i >= 0; i--) {
+            if (children[i].id.indexOf("context-qts") == 0)
+                context.removeChild(children[i]);
+        }
     },
 
-    update: function(event) {
+    toggle: function(event) {
         let window = event.view;
 
-        let context = window.document.getElementById("contentAreaContextMenu");
+        let document = window.document;
 
-        let item = window.document.getElementById("context-qts");
+        let menu = document.getElementById("context-qts-menu");
 
-        item.hidden = true;
+        menu.setAttribute("hidden", true);
+
+        let item = document.getElementById("context-qts-item");
+
+        item.setAttribute("hidden", true);
 
         let selection = moongiraffe.Qts.selected(window);
 
-        if (selection.length === 0) {
-            return;
-        }
+        if (selection.length == 0) return;
 
         if (selection.length > 15) { // truncate long strings
             selection = selection.slice(0, 15) + "...";
@@ -150,17 +182,28 @@ moongiraffe.Qts  = {
 
         let index = moongiraffe.Qts.preference("index");
 
-        let name = moongiraffe.Qts.sites[index].name;
+        if (index == -1) {
+            menu.setAttribute("label", "Search for \"" + selection + "\" torrents at");
 
-        item.label = "Search " + name + " for \"" + selection + "\"";
+            menu.setAttribute("hidden", false);
+        }
+        else {
+            let name = moongiraffe.Qts.sites[index].name;
 
-        item.hidden = false;
+            item.setAttribute("label", "Search " + name + " for \"" + selection + "\"");
+
+            item.setAttribute("hidden", false);
+        }
     },
 
     search: function(event) {
         let window = event.view;
 
         let index = moongiraffe.Qts.preference("index");
+
+        if (index == -1) {
+            index = parseInt(event.target.id.replace(/context-qts-/, ""));
+        }
 
         let uri = moongiraffe.Qts.sites[index].uri;
 

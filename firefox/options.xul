@@ -17,6 +17,7 @@
         <menuitem value="8"  label="Torrent Downloads" />
         <menuitem value="9"  label="Torrent Reactor" />
         <menuitem value="10" label="Lime Torrents" />
+        <menuitem value="-1" label="Display all options in a popup menu" />
       </menupopup>
     </menulist>
   </setting>
