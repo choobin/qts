@@ -43,7 +43,7 @@ let Qts = {
         { name: "ISO Hunt",          uri: "http://isohunt.com/torrents/?ihq=%s" },
         { name: "Bitsnoop",          uri: "http://bitsnoop.com/search/all/%s/c/d/1" },
         { name: "Extra Torrent",     uri: "http://extratorrent.com/search/?search=%s" },
-        { name: "Torrent Downloads", uri: "http://www.torrentdownloads.net/search/?search=%s" },
+        { name: "Torrent Downloads", uri: "http://www.torrentdownloads.net/search/?search=%s" }, // Dead
         { name: "Torrent Reactor",   uri: "http://www.torrentreactor.net/torrent-search/%s" },
         { name: "Lime Torrents",     uri: "http://www.limetorrents.com/search/all/%s/" },
     ],

@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <setting 
-      pref="extensions.qts@moongiraffe.net.index" 
-      type="menulist" 
+  <setting
+      pref="extensions.qts@moongiraffe.net.index"
+      type="menulist"
       title="Torrent Site">
 
     <menulist sizetopopup="always">
@@ -14,7 +14,6 @@
         <menuitem value="5"  label="ISO Hunt" />
         <menuitem value="6"  label="Bitsnoop" />
         <menuitem value="7"  label="Extra Torrent" />
-        <menuitem value="8"  label="Torrent Downloads" />
         <menuitem value="9"  label="Torrent Reactor" />
         <menuitem value="10" label="Lime Torrents" />
         <menuitem value="-1" label="Display all options in a popup menu" />
@@ -22,16 +21,14 @@
     </menulist>
   </setting>
 
-  <setting 
-      pref="extensions.qts@moongiraffe.net.switch" 
-      type="bool" 
+  <setting
+      pref="extensions.qts@moongiraffe.net.switch"
+      type="bool"
       title="Switch to new tab on search" />
 
-  <setting 
-      pref="extensions.qts@moongiraffe.net.next" 
-      type="bool" 
+  <setting
+      pref="extensions.qts@moongiraffe.net.next"
+      type="bool"
       title="Open next to current tab" />
 
 </vbox>
-
-
