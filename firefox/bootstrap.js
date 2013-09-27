@@ -32,9 +32,7 @@ official policies, either expressed or implied, of Christopher Hoobin.
 
 Components.utils.import("resource://gre/modules/Services.jsm");
 
-let moongiraffe = {};
-
-moongiraffe.Qts  = {
+let Qts = {
     // Keep dead sites to maintain correct mapping from existing user preference to sites array index.
     sites: [
         { name: "The Pirate Bay",    uri: "http://thepiratebay.sx/search/%s/0/99/0" },
@@ -71,12 +69,12 @@ moongiraffe.Qts  = {
 
         resource.setSubstitution("qts", alias);
 
-        Services.ww.registerNotification(moongiraffe.Qts);
+        Services.ww.registerNotification(Qts);
 
         let windows = Services.wm.getEnumerator("navigator:browser");
 
         while (windows.hasMoreElements()) {
-            moongiraffe.Qts.add(windows.getNext());
+            Qts.add(windows.getNext());
         }
     },
 
@@ -87,12 +85,12 @@ moongiraffe.Qts  = {
 
         resource.setSubstitution("qts", null);
 
-        Services.ww.unregisterNotification(moongiraffe.Qts);
+        Services.ww.unregisterNotification(Qts);
 
         let windows = Services.wm.getEnumerator("navigator:browser");
 
         while (windows.hasMoreElements()) {
-            moongiraffe.Qts.remove(windows.getNext());
+            Qts.remove(windows.getNext());
         }
     },
 
@@ -107,7 +105,7 @@ moongiraffe.Qts  = {
 
         if (!context) return;
 
-        context.addEventListener("popupshowing", moongiraffe.Qts.toggle, false);
+        context.addEventListener("popupshowing", Qts.toggle, false);
 
         let reference = document.getElementById("context-searchselect");
 
@@ -115,7 +113,7 @@ moongiraffe.Qts  = {
 
         item.setAttribute("id", "context-qts-item");
 
-        item.addEventListener("command", moongiraffe.Qts.search, false);
+        item.addEventListener("command", Qts.search, false);
 
         reference.parentNode.insertBefore(item, reference.nextSibling);
 
@@ -129,16 +127,16 @@ moongiraffe.Qts  = {
 
         menu.appendChild(popup);
 
-        for (let i = 0; i < moongiraffe.Qts.sites.length; i++) {
+        for (let i = 0; i < Qts.sites.length; i++) {
             if (i == 1 || i == 2) continue; // Skip Demonoid and BT Junkie
 
             item = document.createElement("menuitem");
 
             item.setAttribute("id", "context-qts-" + i);
 
-            item.setAttribute("label", moongiraffe.Qts.sites[i].name);
+            item.setAttribute("label", Qts.sites[i].name);
 
-            item.addEventListener("command", moongiraffe.Qts.search, false);
+            item.addEventListener("command", Qts.search, false);
 
             popup.appendChild(item);
         }
@@ -149,7 +147,7 @@ moongiraffe.Qts  = {
     remove: function(window) {
         let context = window.document.getElementById("contentAreaContextMenu");
 
-        context.removeEventListener("popupshowing", moongiraffe.Qts.toggle, false);
+        context.removeEventListener("popupshowing", Qts.toggle, false);
 
         let children = context.childNodes;
 
@@ -172,7 +170,7 @@ moongiraffe.Qts  = {
 
         item.setAttribute("hidden", true);
 
-        let selection = moongiraffe.Qts.selected(window);
+        let selection = Qts.selected(window);
 
         if (selection.length == 0) return;
 
@@ -180,7 +178,7 @@ moongiraffe.Qts  = {
             selection = selection.slice(0, 15) + "...";
         }
 
-        let index = moongiraffe.Qts.preference("index");
+        let index = Qts.preference("index");
 
         if (index == -1) {
             menu.setAttribute("label", "Search for \"" + selection + "\" torrents at");
@@ -188,7 +186,7 @@ moongiraffe.Qts  = {
             menu.setAttribute("hidden", false);
         }
         else {
-            let name = moongiraffe.Qts.sites[index].name;
+            let name = Qts.sites[index].name;
 
             item.setAttribute("label", "Search " + name + " for \"" + selection + "\"");
 
@@ -199,15 +197,15 @@ moongiraffe.Qts  = {
     search: function(event) {
         let window = event.view;
 
-        let index = moongiraffe.Qts.preference("index");
+        let index = Qts.preference("index");
 
         if (index == -1) {
             index = parseInt(event.target.id.replace(/context-qts-/, ""));
         }
 
-        let uri = moongiraffe.Qts.sites[index].uri;
+        let uri = Qts.sites[index].uri;
 
-        let selection = moongiraffe.Qts.selected(window);
+        let selection = Qts.selected(window);
 
         selection = encodeURI(selection);
 
@@ -217,7 +215,7 @@ moongiraffe.Qts  = {
 
         let tab = browser.addTab(uri);
 
-        let opennext = moongiraffe.Qts.preference("next");
+        let opennext = Qts.preference("next");
 
         if (opennext) {
             let position = browser.tabContainer.selectedIndex;
@@ -225,7 +223,7 @@ moongiraffe.Qts  = {
             browser.moveTabTo(tab, position + 1);
         }
 
-        let switchtab = moongiraffe.Qts.preference("switch");
+        let switchtab = Qts.preference("switch");
 
         if (switchtab) {
             browser.selectedTab = tab;
@@ -256,18 +254,18 @@ moongiraffe.Qts  = {
     observe: function(subject, topic, data) {
         if (topic === "domwindowopened") {
             subject.addEventListener("load", function(event) {
-                moongiraffe.Qts.add(subject);
+                Qts.add(subject);
             }, false);
         }
     },
 };
 
 function startup(data, reason) {
-    moongiraffe.Qts.startup(data.installPath);
+    Qts.startup(data.installPath);
 }
 
 function shutdown(data, reason) {
-    moongiraffe.Qts.shutdown();
+    Qts.shutdown();
 }
 
 function install(data, reason) {
@@ -275,6 +273,6 @@ function install(data, reason) {
 
 function uninstall(data, reason) {
     if (reason === 6 /* ADDON_UNINSTALL */) {
-        moongiraffe.Qts.uninstall();
+        Qts.uninstall();
     }
 }
