@@ -1,9 +1,16 @@
 ZIP=$(shell which zip)
 
-all: clean
-	$(ZIP) qts@moongiraffe.net.xpi bootstrap.js ChangeLog icon.png install.rdf options.xul ../LICENSE ../README
+XPI=qts@moongiraffe.net.xpi
+
+all: clean zip
+
+install: zip
+	firefox $(XPI) &
+
+zip:
+	$(ZIP) $(XPI) bootstrap.js ChangeLog icon.png install.rdf options.xul ../LICENSE ../README
 
 clean:
-	$(RM) qts@moongiraffe.net.xpi
+	$(RM) $(XPI)
 
 .PHONY: all clean
