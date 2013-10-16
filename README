@@ -1,9 +1,11 @@
 qts, Quick Torrent Search
 
-A Firefox and Chrome add-on that enables you to search for torrents directly
-from the context menu. Simply select some text, right click, and search for
+A Firefox add-on that enables you to search for torrents directly from
+the context menu. Simply select some text, right click, and search for
 torrents on your favorite site.
 
 https://addons.mozilla.org/en-US/firefox/addon/quick-torrent-search
 
-https://chrome.google.com/webstore/detail/ohimefjlbhbgnegmdmnheidlgmelilii
+Note that the Chrome version was removed from the web-store as it
+violated their terms of service. If you would like to still use it
+you can install it from source here (qts/chrome).
