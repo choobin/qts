@@ -35,7 +35,7 @@ Components.utils.import("resource://gre/modules/Services.jsm");
 let Qts = {
     // Keep dead sites to maintain correct mapping from existing user preference to sites array index.
     sites: [
-        { name: "The Pirate Bay",    uri: "http://thepiratebay.sx/search/%s/0/99/0" },
+        { name: "The Pirate Bay",    uri: "http://thepiratebay.pe/search/%s/0/99/0" },
         { name: "Demonoid",          uri: "http://www.demonoid.me/files/?query=%s" }, // Dead.
         { name: "BT Junkie",         uri: "http://btjunkie.org/search?q=%s" }, // Dead.
         { name: "Torrentz",          uri: "http://torrentz.eu/any?q=%s" },
