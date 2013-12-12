@@ -57,6 +57,12 @@ let Qts = {
 
         branch.setBoolPref("next", false);
 
+        const nsISupportsString = Components.interfaces.nsISupportsString;
+        let iss = Components.classes["@mozilla.org/supports-string;1"].createInstance(nsISupportsString);
+        iss.data = "";
+        branch.setComplexValue("customName", nsISupportsString, iss);
+        branch.setComplexValue("customURL", nsISupportsString, iss);
+
         let resource = Services.io
             .getProtocolHandler("resource")
             .QueryInterface(Components.interfaces.nsIResProtocolHandler);
@@ -187,7 +193,12 @@ let Qts = {
             menu.setAttribute("hidden", false);
         }
         else {
-            let name = Qts.sites[index].name;
+            let name = "";
+
+            if (index == -2)
+                name = Qts.preference("customName");
+            else
+                name = Qts.sites[index].name;
 
             item.setAttribute("label", "Search " + name + " for \"" + selection + "\"");
 
@@ -200,11 +211,17 @@ let Qts = {
 
         let index = Qts.preference("index");
 
-        if (index == -1) {
-            index = parseInt(event.target.id.replace(/context-qts-/, ""));
-        }
+        let uri = "";
 
-        let uri = Qts.sites[index].uri;
+        if (index == -2) {
+            uri = Qts.preference("customURL");
+        }
+        else {
+            if (index == -1)
+                index = parseInt(event.target.id.replace(/context-qts-/, ""));
+
+            uri = Qts.sites[index].uri;
+        }
 
         let selection = Qts.selected(window);
 
@@ -247,6 +264,10 @@ let Qts = {
 
         if (key === "index") {
             return branch.getIntPref(key);
+        }
+        else if (key === "customName" || key === "customURL") {
+            const nsISupportsString = Components.interfaces.nsISupportsString;
+            return branch.getComplexValue(key, nsISupportsString).data;
         }
 
         return branch.getBoolPref(key);
