@@ -1,3 +1,9 @@
+2013-12-13  Christopher Hoobin  <christopher@hoob.in>
+
+	* bootstrap.js Added option to use a custom search site.
+
+	* bootstrap.js The Pirate Bay have moved to a Peruvian domain (.pe)
+
 2013-09-27  Christopher Hoobin  <christopher@hoob.in>
 
 	* Included new option to display all torrent sites in a popup menu.
