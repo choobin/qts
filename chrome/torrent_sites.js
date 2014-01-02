@@ -8,4 +8,6 @@ var torrent_sites = [
     { name: "Torrent Downloads", url: "http://www.torrentdownloads.net/search/?search=%s" },
     { name: "Torrent Reactor",   url: "http://www.torrentreactor.net/torrent-search/%s" },
     { name: "Lime Torrents",     url: "http://www.limetorrents.com/search/all/%s/" },
+    { name: "RARBG",             url: "http://rarbg.com/torrents.php?search=%s&category=0" },
+    { name: "Piraten",           url: "http://tpb.piraten.lu/search/%s/0/99/0" },
 ];
