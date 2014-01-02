@@ -16,6 +16,7 @@
         <menuitem value="7"  label="Extra Torrent" />
         <menuitem value="9"  label="Torrent Reactor" />
         <menuitem value="10" label="Lime Torrents" />
+        <menuitem value="11" label="RARBG" />
         <menuitem value="-2" label="Use a custom torrent site" />
         <menuitem value="-1" label="Display all options in a popup menu" />
       </menupopup>

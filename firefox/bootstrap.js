@@ -46,6 +46,7 @@ let Qts = {
         { name: "Torrent Downloads", uri: "http://www.torrentdownloads.net/search/?search=%s" }, // Dead
         { name: "Torrent Reactor",   uri: "http://www.torrentreactor.net/torrent-search/%s" },
         { name: "Lime Torrents",     uri: "http://www.limetorrents.com/search/all/%s/" },
+        { name: "RARBG",             url: "http://rarbg.com/torrents.php?search=%s&category=0" },
     ],
 
     startup: function(installPath) {

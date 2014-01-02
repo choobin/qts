@@ -1,3 +1,7 @@
+2014-01-02  Christopher Hoobin  <christopher@hoob.in>
+
+	* bootstrap.js/options.xul Added RARBG to firefox/ and chrome/ versions.
+
 2013-12-28  Christopher Hoobin  <christopher@hoob.in>
 
 	* bootstrap.js The Pirate Bay moved back to a Swedish domain (.se)
